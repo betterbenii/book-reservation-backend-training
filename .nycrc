@@ -1,0 +1,10 @@
+{
+  "all": true,
+  "check-coverage": true,
+  "reporter": ["text", "lcov"],
+  "exclude": [
+    "coverage/**",
+    "test/**",
+    "node_modules/**"
+  ]
+}
