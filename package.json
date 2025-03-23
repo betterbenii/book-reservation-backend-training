@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "jest --verbose --detectOpenHandles --forceExit --coverage",
+        "test": "npx jest --verbose --detectOpenHandles --forceExit --coverage",
         "test:coverage": "nyc --reporter=lcov --reporter=text npm test",
         "start": "node app.js",
         "dev": "nodemon app.js"
