@@ -48,22 +48,39 @@ describe('Book Controller', () => {
   it('should add a new book', async () => {
     const mockBook = { title: 'New Book', author: 'Author Name' };
     req.body = mockBook;
+
+    
     Book.prototype.save = jest.fn().mockResolvedValue(mockBook);
 
     await addBook(req, res);
 
+    expect(Book.prototype.save).toHaveBeenCalled(); // optional: verify save called
     expect(res.json).toHaveBeenCalledWith(mockBook);
   });
 
   it('should update an existing book', async () => {
-    const mockBook = { title: 'Updated Book', author: 'Author Name' };
-    req.params.id = '123';
-    req.body = mockBook;
+    const mockBook = {
+      _id: 'bookId123',
+      title: 'Original Title',
+      author: 'Original Author',
+      publicationDate: '2024-01-01',
+      description: 'Original Description',
+      save: jest.fn().mockResolvedValue(true) 
+    };
+
+    req.params.id = 'bookId123';
+    req.body = { title: 'Updated Title' };
+
     Book.findById.mockResolvedValue(mockBook);
-    Book.prototype.save = jest.fn().mockResolvedValue(mockBook);
 
     await updateBook(req, res);
 
+    
+    expect(mockBook.title).toBe('Updated Title');
+
+    expect(mockBook.save).toHaveBeenCalled();
+
+    
     expect(res.json).toHaveBeenCalledWith(mockBook);
   });
 
