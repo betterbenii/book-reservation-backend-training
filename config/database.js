@@ -4,3 +4,4 @@ module.exports = {
         : 'mongodb://localhost/book_reservation_app',
     secret: process.env.JWT_SECRET || 'your_jwt_secret'
 };
+ 
