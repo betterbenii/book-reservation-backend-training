@@ -1,4 +1,6 @@
 module.exports = {
-    database: 'mongodb://localhost/book_reservation_app',
-    secret: 'your_jwt_secret'
-  };
+    database: process.env.NODE_ENV === 'test' 
+        ? 'mongodb://localhost:27017/test_database'
+        : 'mongodb://localhost/book_reservation_app',
+    secret: process.env.JWT_SECRET || 'your_jwt_secret'
+};
